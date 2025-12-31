@@ -5,6 +5,7 @@
 
 @theme inline {
   --color-main: var(--main);
+  --shadow-shadow: shadow-[0_5px_10px_1px_#00000016]
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -128,5 +129,8 @@
   }
   .my-container {
     @apply max-w-7xl mx-auto px-2 md:px-4 xl:px-6;
+  }
+  .my-shadow{
+    @apply shadow-[0_5px_10px_1px_#00000020]
   }
 }
