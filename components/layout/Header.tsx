@@ -63,7 +63,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="w-full bg-main py-2.5 top-0 left-0 sticky h-15">
+      <header className="w-full bg-main py-2.5 top-0 left-0 sticky h-15 z-40">
         <div className="my-container h-full grid grid-rows-1 grid-cols-3 items-center ">
           {/* Mobile Menu btn */}
           <Button
