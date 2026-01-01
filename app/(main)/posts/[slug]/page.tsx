@@ -1,4 +1,3 @@
-import { posts } from "@/lib/mockData";
 import { Post } from "@/types/post";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -9,7 +8,7 @@ export default async function PostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post: Post | undefined = posts.find((p) => p.slug === slug);
+  const post: Post | undefined = await getPost(slug);
 
   if (!post) return notFound();
 
@@ -40,4 +39,12 @@ export default async function PostPage({
       <div>{post.content}</div>
     </div>
   );
+}
+
+async function getPost(slug: string) {
+  const res: Response = await fetch(`http://localhost:3000/api/posts/${slug}`, {
+    next: { revalidate: 0 },
+  });
+  const data: Post = await res.json();
+  return data ?? undefined;
 }
