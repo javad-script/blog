@@ -1,6 +1,7 @@
 import { posts } from "@/lib/mockData";
 import { Post } from "@/types/post";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 export default async function PostPage({
   params,
@@ -8,7 +9,10 @@ export default async function PostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post: Post = posts[1];
+  const post: Post | undefined = posts.find((p) => p.slug === slug);
+
+  if (!post) return notFound();
+
   return (
     <div className="flex flex-col gap-6">
       <div className="">
@@ -29,7 +33,7 @@ export default async function PostPage({
             </span>
           </span>
           <span className="text-muted-foreground text-sm ml-10">
-            {post.publishedAt}
+            {new Date(post.publishedAt).toLocaleString()}
           </span>
         </div>
       </div>
