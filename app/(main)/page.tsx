@@ -53,9 +53,9 @@ export function Aside() {
           <div className="my-shadow w-full rounded-lg bg-main py-2 text-center capitalize font-bold text-lg text-background">
             Popular Posts
           </div>
-          <ArticleSideCard />
-          <ArticleSideCard />
-          <ArticleSideCard />
+          {posts.slice(0, 3).map((p) => (
+            <ArticleSideCard key={p._id} {...p} />
+          ))}
         </section>
         <section className="flex flex-col gap-4">
           <div className="my-shadow w-full rounded-lg bg-main py-2 text-center capitalize font-bold text-lg text-background">
@@ -93,3 +93,10 @@ export function Aside() {
     </aside>
   );
 }
+
+// async function getPopularPosts() {
+//   const res: Response = await fetch(
+//     `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`
+//   );
+//   return res.json();
+// }

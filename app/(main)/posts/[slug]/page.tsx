@@ -42,9 +42,12 @@ export default async function PostPage({
 }
 
 async function getPost(slug: string) {
-  const res: Response = await fetch(`http://localhost:3000/api/posts/${slug}`, {
-    next: { revalidate: 0 },
-  });
+  const res: Response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`,
+    {
+      next: { revalidate: 0 },
+    }
+  );
   const data: Post = await res.json();
   return data ?? undefined;
 }

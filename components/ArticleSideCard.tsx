@@ -1,20 +1,30 @@
+import { Post } from "@/types/post";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
-export default function ArticleSideCard() {
+type Props = Pick<Post, "image" | "publishedAt" | "title" | "slug">;
+
+export default function ArticleSideCard({
+  image,
+  publishedAt,
+  title,
+  slug,
+}: Props) {
   return (
     <article className="flex gap-4 h-24 rounded-lg my-shadow p-4">
       <div className="h-full w-24 relative">
-        <Image
-          src={"/profile.jpg"}
-          alt=""
-          className="object-cover rounded-md"
-          fill
-        />
+        <Image src={image} alt="" className="object-cover rounded-md" fill />
       </div>
       <div className="flex flex-col">
-        <h4>Lorem ipsum dolor sit amet.</h4>
-        <span className="text-xs text-muted-foreground">24 january 2022</span>
+        <Link href={`/posts/${slug}`}>
+          <h4 className="line-clamp-1 hover:text-main transition duration-200">
+            {title}
+          </h4>
+        </Link>
+        <span className="text-xs text-muted-foreground">
+          {new Date(publishedAt).toLocaleString()}
+        </span>
       </div>
     </article>
   );

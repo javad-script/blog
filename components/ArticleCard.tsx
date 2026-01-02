@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Post } from "@/types/post";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function ArticleCard(props: Post) {
@@ -23,9 +24,11 @@ export default function ArticleCard(props: Post) {
         </span>
 
         {/* Title */}
-        <h2 className="text-xl font-serif font-medium line-clamp-1">
-          {props.title}
-        </h2>
+        <Link href={`/posts/${props.slug}`}>
+          <h2 className="text-xl font-serif font-medium line-clamp-1 hover:text-main transition duration-200">
+            {props.title}
+          </h2>
+        </Link>
 
         {/* Description */}
         <div className="flex-1 flex items-center">
@@ -42,9 +45,11 @@ export default function ArticleCard(props: Post) {
             />
             <AvatarFallback>{props.author.name[0]}</AvatarFallback>
           </Avatar>
-          <span className="text-sm font-bold text-foreground">
-            {props.author.name}
-          </span>
+          <Link href={`/profile/${props.author.profileSlug}`}>
+            <span className="text-sm font-bold text-foreground">
+              {props.author.name}
+            </span>
+          </Link>
           {/* Meta */}
           <span className="ml-auto text-sm text-gray-500">
             {new Date(props.publishedAt).toLocaleDateString()}
