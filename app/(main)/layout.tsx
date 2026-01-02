@@ -1,9 +1,7 @@
-import { Aside } from "@/app/(main)/page";
-import ArticleCard from "@/components/ArticleCard";
+import Aside from "@/components/layout/Aside";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
-import Image from "next/image";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
